@@ -1,5 +1,6 @@
 {
   "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)"
+  "amethyst": "Amethyst",
+  "amethyst-connect": "Amethyst Connect (Addon)",
+  "nexuscore": "NexusCore API"
 }
