@@ -6,7 +6,7 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/protocolpav/nexuscore',
   },
-  docsRepositoryBase: 'https://github.com/protocolpav/everthorn-docs',
+  docsRepositoryBase: 'https://github.com/protocolpav/everthorn-docs/tree/master/',
   footer: {
     text: 'Nextra Docs Template',
   },
