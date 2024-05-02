@@ -1,0 +1,33 @@
+# Users API Docs
+
+You can fetch users in 3 different ways: via their **`ThornyID`**, `Gamertag` or `Discord ID`. The last two require
+you to also know the Guild of the user, since what is really happening is it is finding the ThornyID of the user 
+based on the Gamertag and Guild ID or Discord and Guild IDs.
+
+---
+
+## `/v1/api/users/thorny-id/<thorny_id>`
+> Method: `GET`
+
+Returns the user object based on the ThornyID provided.
+
+---
+
+## `/v1/api/users/thorny-id/<thorny_id>`
+> Method: `PUT`
+
+Updates the user based on the object provided in the HTTP body. The body must be
+the same format as the user object.
+
+Example:
+```
+{
+  levels: {
+    xp: 4000
+  }
+}
+```
+This will update the user object to set the XP to 4000.
+
+**NOTE that this will probably change to separate routes in the future as this is too tedious 
+for users of the API to remember the structure of the object**
