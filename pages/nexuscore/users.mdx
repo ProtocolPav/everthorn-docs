@@ -4,30 +4,329 @@ You can fetch users in 3 different ways: via their **`ThornyID`**, `Gamertag` or
 you to also know the Guild of the user, since what is really happening is it is finding the ThornyID of the user 
 based on the Gamertag and Guild ID or Discord and Guild IDs.
 
+
+## Getting, Creating and Deleting Users
+
 ---
 
-## `/v1/api/users/thorny-id/<thorny_id>`
+### `/v1/api/users/`
+> Method: `POST`
+
+Creates a new user and returns the new user object created
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>`
 > Method: `GET`
 
 Returns the user object based on the ThornyID provided.
+Called usually when the bot joins a new guild or a new user joins
+an existing guild
 
 ---
 
-## `/v1/api/users/thorny-id/<thorny_id>`
-> Method: `PUT`
+### `/v1/api/users/thorny-id/<thorny_id>`
+> Method: `DELETE`
 
-Updates the user based on the object provided in the HTTP body. The body must be
-the same format as the user object.
+Soft-deletes the user object from the database. This
+is called when a user leaves a guild or when the bot leaves a guild
 
-Example:
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>`
+> Method: `PATCH`
+
+Re-activates a user object on the database. This is
+called when a user re-joins a guild or the bot rejoins a guild
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile`
+> Method: `GET`
+
+Returns the profile object of a user
+
+---
+
+## Updating User Data
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/username`
+> Method: `PATCH`
+
+Updates the username of the user
+
+Request Body:
 ```
 {
-  levels: {
-    xp: 4000
-  }
+  "username": "Your New Username"
 }
 ```
-This will update the user object to set the XP to 4000.
 
-**NOTE that this will probably change to separate routes in the future as this is too tedious 
-for users of the API to remember the structure of the object**
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/birthday`
+> Method: `PATCH`
+
+Updates the birthday of the user
+
+Request Body:
+```
+{
+  "birthday": "YYYY-MM-DD"
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/balance`
+> Method: `PATCH`
+
+Updates the user's balance. This operation gets logged.
+
+Request Body:
+```
+{
+  "increase": 50,
+  "decrease": 30,
+  "log_message": "Message here"
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/slogan`
+> Method: `PATCH`
+
+Updates the slogan showed on the profile.
+Maximum 50 characters allowed.
+
+Request Body:
+```
+{
+  "slogan": "Your 50 Character Slogan Here"
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/gamertag`
+> Method: `PATCH`
+
+Updates the user's gamertag. Note, this is not the
+gamertag that will be whitelisted.
+
+Request Body:
+```
+{
+  "gamertag": "Your Gamertag"
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/gamertag/whitelist`
+> Method: `PATCH`
+
+Updates the gamertag in the whitelist. This operation will also
+make a call to the amethyst server connected to this guild.
+
+Request Body:
+```
+{
+  "gamertag": "Your Gamertag" | null
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/about`
+> Method: `PATCH`
+
+Updates the about section showed on the profile.
+There is a character limit.
+
+Request Body:
+```
+{
+  "about": "..."
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/character/lore`
+> Method: `PATCH`
+
+Updates the character lore section showed on the profile.
+There is a character limit.
+
+Request Body:
+```
+{
+  "lore": "..."
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/character/name`
+> Method: `PATCH`
+
+Updates the character name showed on the profile
+
+Request Body:
+```
+{
+  "name": "Your name here"
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/character/age`
+> Method: `PATCH`
+
+Updates the character age showed on the profile
+
+Request Body:
+```
+{
+  "age": 50
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/character/race`
+> Method: `PATCH`
+
+Updates the character race showed on the profile
+
+Request Body:
+```
+{
+  "race": "Your race here"
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/character/role`
+> Method: `PATCH`
+
+Updates the character role showed on the profile
+
+Request Body:
+```
+{
+  "role": "Your name here"
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/character/origin`
+> Method: `PATCH`
+
+Updates the character origin showed on the profile
+
+Request Body:
+```
+{
+  "origin": "Your name here"
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/character/beliefs`
+> Method: `PATCH`
+
+Updates the character beliefs showed on the profile
+
+Request Body:
+```
+{
+  "beliefs": "Your name here"
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/profile/character/stats`
+> Method: `PATCH`
+
+Updates the character stats showed on the profile. Each stat
+has a max set at 6. You can go over it, but it will not display.
+
+Request Body:
+```
+{
+  "agility": 1,
+  "valor": 1,
+  "strength": 1,
+  "charisma": 1,
+  "creativity": 1,
+  "ingenuity": 1
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/levels/level`
+> Method: `PATCH`
+
+Updates the user's level
+
+Request Body:
+```
+{
+  "level_increase": 1
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/levels/xp`
+> Method: `PATCH`
+
+Updates the user's xp
+
+Request Body:
+```
+{
+  "xp_increase": 1
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/levels/xp/required`
+> Method: `PATCH`
+
+Updates the required XP of the user to reach the next level
+
+Request Body:
+```
+{
+  "xp": 1
+}
+```
+
+---
+
+### `/v1/api/users/thorny-id/<thorny_id>/levels/message`
+> Method: `PATCH`
+
+Updates the last sent message of the user
+
+Request Body:
+```
+{
+  "time": "YYYY-MM-DD HH:MM:SS"
+}
+```
+
+---
