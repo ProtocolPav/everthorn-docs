@@ -9,6 +9,7 @@ based on the Gamertag and Guild ID or Discord and Guild IDs.
 
 ### Create User
 > Route: `/v1/api/users/`
+
 > Method: `POST`
 
 Creates a new user and returns the new user object created
@@ -17,6 +18,7 @@ Creates a new user and returns the new user object created
 
 ### Get User
 > Route: `/v1/api/users/thorny-id/<thorny_id>`
+
 > Method: `GET`
 
 Returns the user object based on the ThornyID provided.
@@ -27,6 +29,7 @@ an existing guild
 
 ### Deactivate User
 > Route: `/v1/api/users/thorny-id/<thorny_id>`
+
 > Method: `DELETE`
 
 Soft-deletes the user object from the database. This
@@ -36,6 +39,7 @@ is called when a user leaves a guild or when the bot leaves a guild
 
 ### Re-Activate User
 > Route: `/v1/api/users/thorny-id/<thorny_id>`
+
 > Method: `PATCH`
 
 Re-activates a user object on the database. This is
@@ -45,6 +49,7 @@ called when a user re-joins a guild or the bot rejoins a guild
 
 ### Get Profile
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile`
+
 > Method: `GET`
 
 Returns the profile object of a user
@@ -57,6 +62,7 @@ Returns the profile object of a user
 
 ### Update Username
 > Route: `/v1/api/users/thorny-id/<thorny_id>/username`
+
 > Method: `PATCH`
 
 Updates the username of the user
@@ -72,6 +78,7 @@ Request Body:
 
 ### Update Birthday
 > Route: `/v1/api/users/thorny-id/<thorny_id>/birthday`
+
 > Method: `PATCH`
 
 Updates the birthday of the user
@@ -87,6 +94,7 @@ Request Body:
 
 ### Update Balance
 > Route: `/v1/api/users/thorny-id/<thorny_id>/balance`
+
 > Method: `PATCH`
 
 Updates the user's balance. This operation gets logged.
@@ -104,6 +112,7 @@ Request Body:
 
 ### Update Slogan
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/slogan`
+
 > Method: `PATCH`
 
 Updates the slogan showed on the profile.
@@ -120,6 +129,7 @@ Request Body:
 
 ### Update Gamertag
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/gamertag`
+
 > Method: `PATCH`
 
 Updates the user's gamertag. Note, this is not the
@@ -136,6 +146,7 @@ Request Body:
 
 ### Update Whitelist
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/gamertag/whitelist`
+
 > Method: `PATCH`
 
 Updates the gamertag in the whitelist. This operation will also
@@ -152,6 +163,7 @@ Request Body:
 
 ### Update About
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/about`
+
 > Method: `PATCH`
 
 Updates the about section showed on the profile.
@@ -168,6 +180,7 @@ Request Body:
 
 ### Update Lore
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/character/lore`
+
 > Method: `PATCH`
 
 Updates the character lore section showed on the profile.
@@ -184,6 +197,7 @@ Request Body:
 
 ### Update Character Name
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/character/name`
+
 > Method: `PATCH`
 
 Updates the character name showed on the profile
@@ -199,6 +213,7 @@ Request Body:
 
 ### Update Character Age
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/character/age`
+
 > Method: `PATCH`
 
 Updates the character age showed on the profile
@@ -214,6 +229,7 @@ Request Body:
 
 ### Update Character Race
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/character/race`
+
 > Method: `PATCH`
 
 Updates the character race showed on the profile
@@ -229,6 +245,7 @@ Request Body:
 
 ### Update Character Role
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/character/role`
+
 > Method: `PATCH`
 
 Updates the character role showed on the profile
@@ -244,6 +261,7 @@ Request Body:
 
 ### Update Character Origin
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/character/origin`
+
 > Method: `PATCH`
 
 Updates the character origin showed on the profile
@@ -259,6 +277,7 @@ Request Body:
 
 ### Update Character Beliefs
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/character/beliefs`
+
 > Method: `PATCH`
 
 Updates the character beliefs showed on the profile
@@ -274,6 +293,7 @@ Request Body:
 
 ### Update Character Stats
 > Route: `/v1/api/users/thorny-id/<thorny_id>/profile/character/stats`
+
 > Method: `PATCH`
 
 Updates the character stats showed on the profile. Each stat
@@ -295,6 +315,7 @@ Request Body:
 
 ### Update Level
 > Route: `/v1/api/users/thorny-id/<thorny_id>/levels/level`
+
 > Method: `PATCH`
 
 Updates the user's level
@@ -310,6 +331,7 @@ Request Body:
 
 ### Update XP
 > Route: `/v1/api/users/thorny-id/<thorny_id>/levels/xp`
+
 > Method: `PATCH`
 
 Updates the user's xp
@@ -325,6 +347,7 @@ Request Body:
 
 ### Update Required XP
 > Route: `/v1/api/users/thorny-id/<thorny_id>/levels/xp/required`
+
 > Method: `PATCH`
 
 Updates the required XP of the user to reach the next level
@@ -340,6 +363,7 @@ Request Body:
 
 ### Update Last Message Sent
 > Route: `/v1/api/users/thorny-id/<thorny_id>/levels/message`
+
 > Method: `PATCH`
 
 Updates the last sent message of the user
