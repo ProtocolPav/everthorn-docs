@@ -1,0 +1,191 @@
+# Projects API Docs
+
+Projects have a unique ID as a string. This means that when you create a new project with a new name, that name becomes
+its ID. Hence, you can't have two projects with the same/similar ID, and you can't change your ID without creating a new project.
+
+## Getting and Creating Projects
+
+### Create Project
+> Route: `/v1/api/projects/`
+
+> Method: `POST`
+
+Creates a new project and returns it. The status will be 'pending' as default.
+Returns a 404 if a project with this name already exists.
+
+Request Body:
+```json
+{
+  "name": "The Project's Name",
+  "coordinates": [x, y, z],
+  "lead_id": 50,
+  "member_ids": [40, 44, 23],
+  "description": "Not the content! This is the description that people write during their application"
+}
+```
+
+---
+
+### Get Project
+> Route: `/v1/api/projects/<project_id:str>`
+
+> Method: `GET`
+
+Get a project and its data.
+
+Return Body:
+```json
+{
+  "project_id": "some_project",
+  "coordinates": [x, y, z],
+  "description": "Description",
+  "status": "ongoing",
+  "content": {json object of content},
+  "lead_id": 50,
+  "member_ids": [44, 34, 212],
+  "thread_id": 1122286933134032937,
+  "accepted_on": "YYYY-MM-DD HH:MM:SS",
+  "completed_on": "YYYY-MM-DD HH:MM:SS"
+}
+```
+
+---
+
+### Get Status History
+> Route: `/v1/api/projects/<project_id:str>/status`
+
+> Method: `GET`
+
+Statuses are stored as a history. Each status has a date attached to it.
+The most recent status is the current status of the project.
+
+Returns a list of JSON objects for the status
+
+Return Body:
+```json
+[
+  {
+    "status": "some_status",
+    "date": "YYYY-MM-DD HH:MM:SS"
+  }
+]
+```
+
+---
+
+### Get Content History
+> Route: `/v1/api/projects/<project_id:str>/content`
+
+> Method: `GET`
+
+Content is stored as a history. You can see who
+modified content and when. All project members are able to
+modify the project content.
+
+Returns a list of JSON objects for the content
+
+Return Body:
+```json
+[
+  {
+    "content": {json content object},
+    "date": "YYYY-MM-DD HH:MM:SS",
+    "thorny_id": 390
+  }
+]
+```
+
+---
+
+## Updating Projects
+
+### Update Content
+> Route: `/v1/api/projects/<project_id:str>/content`
+
+> Method: `PATCH`
+
+Updates the project's content. Called when the user presses "save" on the 
+website.
+
+Request Body:
+```json
+{
+  "content": {json content object},
+  "thorny_id": 390
+}
+```
+
+---
+
+### Update Status
+> Route: `/v1/api/projects/<project_id:str>/status`
+
+> Method: `PATCH`
+
+Updates the project's status.
+
+Request Body:
+```json
+{
+  "status": "new_status"
+}
+```
+
+---
+
+### Update Members
+> Route: `/v1/api/projects/<project_id:str>/members`
+
+> Method: `PATCH`
+
+Updates the project's members. Each member must be a ThornyID.
+Returns a 404 if a ThornyID does not exist.
+
+If you try to remove a member that is not a project member,
+nothing will happen and it gets ignored. Same applies if you
+add a member that already is a project member.
+
+Request Body:
+```json
+{
+  "new_members": [40, 42, 34],
+  "remove_members": [30, 50, 50]
+}
+```
+
+---
+
+### Update Thread
+> Route: `/v1/api/projects/<project_id:str>/thread`
+
+> Method: `PATCH`
+
+Updates the project's discord thread. The API will not validate if the
+thread truly does exist, instead this validation is passed on to the 
+application using this thread_id, such as Thorny.
+
+Request Body:
+```json
+{
+  "thread": 389388383838389487
+}
+```
+
+---
+
+### Update Description
+> Route: `/v1/api/projects/<project_id:str>/description`
+
+> Method: `PATCH`
+
+Updates the project's description. This is not stored as a history.
+Description has a maximum of 2000 characters.
+
+Request Body:
+```json
+{
+  "description": "Some description"
+}
+```
+
+---
